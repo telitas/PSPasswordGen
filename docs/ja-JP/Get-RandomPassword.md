@@ -49,7 +49,7 @@ Generate-Password -Length 20 -Count 1
 Generate-Password -NoSymbols -ExcludeChars "Qwerty"
 ```
 
-20個のパスワードが生成されます。7それぞれのパスワード長は12文字です。
+20個のパスワードが生成されます。それぞれのパスワード長は12文字です。
 
 生成されたパスワードは記号と"Q", "w", "e", "r", "t", "y"を含みません。
 
