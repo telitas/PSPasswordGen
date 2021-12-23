@@ -37,8 +37,10 @@ Describe 'PSPasswordGen' {
             It 'Set password length' {
                 $output = Get-RandomPassword -Length 1
                 $output[0].Length | Should -Be 1
-                $output = Get-RandomPassword -Length 100
-                $output[0].Length | Should -Be 100
+                $output = Get-RandomPassword -Length 0xFF
+                $output[0].Length | Should -Be 0xFF
+                $output = Get-RandomPassword -Length 0x100
+                $output[0].Length | Should -Be 0x100
             }
             It 'Set passwords count' {
                 $output = Get-RandomPassword -Count 1

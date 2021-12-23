@@ -41,6 +41,8 @@ function Get-RandomPassword
         $oneSet.IntersectWith($Another)
         $oneSet.Count -gt 0
     }
+    Set-Variable -Name ByteMaxValueDividedByPasswordLength -Value ([Math]::Truncate([byte]::MaxValue / $Length)) -Option ReadOnly
+    Set-Variable -Name BytesLengthToRepresentPasswordLength -Value ([Math]::Truncate([System.Math]::Log([uint]::MaxValue+1, [byte]::MaxValue+1))) -Option ReadOnly
     Set-Variable -Name NumeralChars -Value '0123456789' -Option ReadOnly
     Set-Variable -Name LowerCaseChars -Value 'abcdefghijklmnopqrstuvwxyz' -Option ReadOnly
     Set-Variable -Name UpperCaseChars -Value 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' -Option ReadOnly
@@ -122,9 +124,27 @@ function Get-RandomPassword
                 $index=$randomBytes[0]
             }
             while($index -ge $CandidateCharList.Length)
-            $password=$password+$CandidateCharList[$index]
-            if($password.length -eq $Length)
+            if($password.length -lt $Length - 1)
             {
+                $password=$password+$CandidateCharList[$index]
+            }
+            else
+            {
+                [int]$position=-1
+                while($true)
+                {
+                    [byte[]]$randomBytes=New-Object -TypeName byte[] -ArgumentList $BytesLengthToRepresentPasswordLength
+                    $randomGenerator.GetBytes($randomBytes)
+                    [Array]::Resize([ref]$randomBytes, 4)
+                    $randomInt32=[System.BitConverter]::ToInt32($randomBytes) -band [int]::MaxValue
+                    $position=$randomInt32 % $Length
+                    if($ByteMaxValueDividedByPasswordLength -eq 0 -or $randomBytes[0] / $Length -le $ByteMaxValueDividedByPasswordLength)
+                    {
+                        break
+                    }
+                }
+                $password=$password.substring(0,$position)+$CandidateCharList[$index]+$password.substring($position)
+
                 $various = 0
                 Write-Debug "Candidate password is $($password)"
                 if($NoNumerals -or $NumeralsPattern.IsMatch($password))
