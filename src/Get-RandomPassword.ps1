@@ -118,7 +118,7 @@ function Get-RandomPassword
             do
             {
                 [byte[]]$randomBytes=@(0)
-                $randomGenerator.GetNonZeroBytes($randomBytes)
+                $randomGenerator.GetBytes($randomBytes)
                 $index=$randomBytes[0]
             }
             while($index -ge $CandidateCharList.Length)

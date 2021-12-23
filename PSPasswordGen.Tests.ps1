@@ -130,6 +130,19 @@ Describe 'PSPasswordGen' {
                     }
                 }
             }
+            It 'Use all candidate chars' {
+                for($i=0; $i -lt 30; $i++)
+                {
+                    $output = Get-RandomPassword -Length 100 -Count 1 -NoUpperCase -NoLowerCase -NoSymbols -ExcludeChars "123456789"
+                    $output | ForEach-Object -Process {
+                        $_ | Should -MatchExactly '^0+$'
+                    }
+                    $output = Get-RandomPassword -Length 200 -Count 1 -NoUpperCase -NoLowerCase -NoSymbols -ExcludeChars "23456789"
+                    $output | ForEach-Object -Process {
+                        $_ | Should -MatchExactly '^[01]*(01|10)[01]*$'
+                    }
+                }
+            }
         }
         Context 'Exception' {
             It 'Password length less than minimum' {
