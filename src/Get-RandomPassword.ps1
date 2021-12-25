@@ -136,7 +136,7 @@ function Get-RandomPassword
                     [byte[]]$randomBytes=New-Object -TypeName byte[] -ArgumentList $BytesLengthToRepresentPasswordLength
                     $randomGenerator.GetBytes($randomBytes)
                     [Array]::Resize([ref]$randomBytes, 4)
-                    $randomInt32=[System.BitConverter]::ToInt32($randomBytes) -band [int]::MaxValue
+                    $randomInt32=[System.BitConverter]::ToInt32($randomBytes, 0) -band [int]::MaxValue
                     $position=$randomInt32 % $Length
                     if($ByteMaxValueDividedByPasswordLength -eq 0 -or $randomBytes[0] / $Length -le $ByteMaxValueDividedByPasswordLength)
                     {
