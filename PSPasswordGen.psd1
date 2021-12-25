@@ -1,6 +1,6 @@
 @{
     RootModule = 'PSPasswordGen.psm1'
-    ModuleVersion = '1.0.2'
+    ModuleVersion = '1.0.3'
     GUID = 'a3f8a08e-2fd8-4753-b71d-8a5373ec5811'
     Author = 'telitas'
     CompanyName = 'Unknown'
