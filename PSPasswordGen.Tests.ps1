@@ -17,7 +17,7 @@ Describe 'PSPasswordGen' {
     }
     Context 'Get-RandomPassword' {
         Context 'Passed' {
-            It 'Set culture' {
+            It 'Set culture' -Skip:($PSVersionTable.PSVersion.Major -lt 5){
                 $culture = Get-UICulture
                 @(
                     'en-US'
