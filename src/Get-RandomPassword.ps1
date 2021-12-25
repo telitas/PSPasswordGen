@@ -41,8 +41,8 @@ function Get-RandomPassword
         $oneSet.IntersectWith($Another)
         $oneSet.Count -gt 0
     }
-    Set-Variable -Name ByteMaxValueDividedByPasswordLength -Value ([Math]::Truncate([byte]::MaxValue / $Length)) -Option ReadOnly
-    Set-Variable -Name BytesLengthToRepresentPasswordLength -Value ([Math]::Truncate([System.Math]::Log([uint]::MaxValue+1, [byte]::MaxValue+1))) -Option ReadOnly
+    Set-Variable -Name ByteMaxValueDividedByPasswordLength -Value ([System.Math]::Truncate([byte]::MaxValue / $Length)) -Option ReadOnly
+    Set-Variable -Name BytesLengthToRepresentPasswordLength -Value ([System.Math]::Truncate([System.Math]::Log([uint32]::MaxValue+1, [byte]::MaxValue+1))) -Option ReadOnly
     Set-Variable -Name NumeralChars -Value '0123456789' -Option ReadOnly
     Set-Variable -Name LowerCaseChars -Value 'abcdefghijklmnopqrstuvwxyz' -Option ReadOnly
     Set-Variable -Name UpperCaseChars -Value 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' -Option ReadOnly
