@@ -32,21 +32,21 @@ The password will be generated based on the following rules:
 
 ### EXAMPLE 1
 ```
-Generate-Password
+PS C:\> Get-RandomPassword
 ```
 
 20 passwords will be generated. Each password length is 12 characters.
 
 ### EXAMPLE 2
 ```
-Generate-Password -Length 20 -Count 1
+PS C:\> Get-RandomPassword -Length 20 -Count 1
 ```
 
 1 password will be generated. The length of the password is 20 characters.
 
 ### EXAMPLE 3
 ```
-Generate-Password -NoSymbols -ExcludeChars "Qwerty"
+PS C:\> Get-RandomPassword -NoSymbols -ExcludeChars "Qwerty"
 ```
 
 20 passwords will be generated. The length of each password is 12 characters.

@@ -32,21 +32,21 @@ Get-RandomPassword [[-Length] <Int32>] [[-Count] <Int32>] [-NoNumerals] [-NoLowe
 
 ### EXAMPLE 1
 ```
-Generate-Password
+PS C:\> Get-RandomPassword
 ```
 
 20個のパスワードが生成されます。それぞれのパスワード長は12文字です。
 
 ### EXAMPLE 2
 ```
-Generate-Password -Length 20 -Count 1
+PS C:\> Get-RandomPassword -Length 20 -Count 1
 ```
 
 1個のパスワードが生成されます。パスワード長は20文字です。
 
 ### EXAMPLE 3
 ```
-Generate-Password -NoSymbols -ExcludeChars "Qwerty"
+PS C:\> Get-RandomPassword -NoSymbols -ExcludeChars "Qwerty"
 ```
 
 20個のパスワードが生成されます。それぞれのパスワード長は12文字です。
