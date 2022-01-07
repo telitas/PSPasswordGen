@@ -1,3 +1,7 @@
+# Copyright (c) 2021 telitas
+# This file is released under the MIT License.
+# See the LICENSE file or https://opensource.org/licenses/mit-license.php for details.
+
 function Get-RandomPassword
 {
     <#

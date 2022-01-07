@@ -11,6 +11,13 @@
 
 - ランダムなパスワードの生成
 
+# LICENSE
+MIT
+  
+Copyright (c) 2021 telitas
+  
+See the LICENSE file or https://opensource.org/licenses/mit-license.php for details.
+
 # REPOSITORY
 https://www.powershellgallery.com/packages/PSPasswordGen
 

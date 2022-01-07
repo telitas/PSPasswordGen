@@ -4,6 +4,7 @@ Set-Variable -Name FilesMapping -Value @{
     "$($PackageName).psm1"=$null
     "$($PackageName).psd1"=$null
     "src"=$null
+    "LICENSE"=$null
 } -Option ReadOnly
 
 if(Test-Path -Path $PackagePath){

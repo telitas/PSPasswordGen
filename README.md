@@ -45,3 +45,7 @@ Get-Help Get-RandomPassword -Detailed
 ## License
 
 MIT
+
+Copyright (c) 2021 telitas
+
+See the LICENSE file or https://opensource.org/licenses/mit-license.php for details.
