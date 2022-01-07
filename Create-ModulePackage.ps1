@@ -10,7 +10,15 @@ Set-Variable -Name FilesMapping -Value @{
     "src"=$null
     "LICENSE"=$null
 } -Option ReadOnly
-
+if((git tag --list --contains HEAD) -match "^v(?<version>[0-9]+\.[0-9]+\.[0-9])")
+{
+    $version = $Matches["version"]    
+}
+else
+{
+    Write-Warning "The current Commit does not contain versioning tag."
+    $version = "0.0.1"
+}
 if(Test-Path -Path $PackagePath){
     Write-Warning -Message "Old package was removed."
     Remove-Item -Path $PackagePath -Recurse
@@ -18,7 +26,17 @@ if(Test-Path -Path $PackagePath){
 New-Item -ItemType Directory -Path $PackagePath > $null
 
 $FilesMapping.Keys | ForEach-Object -Process {
-    Copy-Item -Path (Join-Path -Path $PSScriptRoot -ChildPath $_) -Destination (Join-Path -Path $PackagePath -ChildPath $(if($null -eq $FilesMapping[$_]){$_}else{$FilesMapping[$_]})) -Recurse
+    switch($_)
+    {
+        "$($PackageName).psd1"
+        {
+            (Get-Content -Path (Join-Path -Path $PSScriptRoot -ChildPath $_) -Raw) -replace 'ModuleVersion = ''\$Version''',  "ModuleVersion = '$($version)'" | Out-File -FilePath (Join-Path -Path $PackagePath -ChildPath $(if($null -eq $FilesMapping[$_]){$_}else{$FilesMapping[$_]})) -NoNewline
+        }
+        default
+        {
+            Copy-Item -Path (Join-Path -Path $PSScriptRoot -ChildPath $_) -Destination (Join-Path -Path $PackagePath -ChildPath $(if($null -eq $FilesMapping[$_]){$_}else{$FilesMapping[$_]})) -Recurse
+        }
+    }
 }
 
 Set-Variable -Name DocumetsPath -Value (Join-Path -Path $PSScriptRoot -ChildPath "docs") -Option ReadOnly
