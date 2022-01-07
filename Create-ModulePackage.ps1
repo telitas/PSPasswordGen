@@ -1,3 +1,7 @@
+if($PSVersionTable.PSVersion.Major -lt 7)
+{
+    Write-Error -Message "This script supports PowerShell 7 or later." -ErrorAction Stop
+}
 Set-Variable -Name PackageName -Value "PSPasswordGen" -Option ReadOnly
 Set-Variable -Name PackagePath -Value (Join-Path -Path $PSScriptRoot -ChildPath $PackageName) -Option ReadOnly
 Set-Variable -Name FilesMapping -Value @{
