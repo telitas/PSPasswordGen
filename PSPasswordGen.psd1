@@ -6,7 +6,7 @@
     CompanyName = 'Unknown'
     Copyright = '(c) 2021 telitas'
     Description = 'PowerShell password generation tool.'
-    PowerShellVersion = '3.0'
+    PowerShellVersion = '5.0'
     FunctionsToExport = @('Get-RandomPassword')
     CmdletsToExport = @()
     VariablesToExport = '*'

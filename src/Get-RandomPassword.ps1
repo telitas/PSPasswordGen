@@ -30,11 +30,6 @@ function Get-RandomPassword
     {
         Import-LocalizedData -BindingVariable UIMessages -UICulture 'en-US'
     }
-    Set-Variable -Name SupportPowerShellVersion -Value 3 -Option ReadOnly
-    if($PSVersionTable.PSVersion.Major -lt $SupportPowerShellVersion)
-    {
-        Write-Warning -Message $UIMessages.ThisVersionIsNotSupported.Replace('$SupportPowerShellVersion', $SupportPowerShellVersion)
-    }
     function ContainsAny
     {
         param(
